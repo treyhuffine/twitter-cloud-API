@@ -38,4 +38,14 @@ router.post('/search', function(req, res, next) {
   });
 });
 
+router.post('/sendtweet', function(req, res, next) {
+  client.post('statuses/update', { status: req.body.tweet }, function(error, tweets, response){
+    console.log(error);
+    if (!error) {
+      res.json(tweets);
+    }
+  });
+});
+
+
 module.exports = router;
