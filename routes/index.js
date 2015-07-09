@@ -35,7 +35,7 @@ router.post('/search', function(req, res, next) {
         if (words.indexOf(lowerCaseWord) >= 0) {
           stats[word] = stats[word] || 0;
           stats[word]++;
-          user[tweet.user.screen_name] = tweet.user;
+          users[tweet.user.screen_name] = tweet.user;
         }
       });
     });
