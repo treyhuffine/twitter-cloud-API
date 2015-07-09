@@ -17,6 +17,7 @@ function twitterClient(params) {
 }
 
 router.post('/search', function(req, res, next) {
+  console.log("DOUBLE?");
   var client = twitterClient(req.body);
   var words = req.body.words.toLowerCase().split(" ");
 
@@ -55,5 +56,18 @@ router.post('/sendtweet', function(req, res, next) {
   });
 });
 
+router.post('/followuser', function(req, res, next) {
+  console.log(req.body);
+  var client = twitterClient(req.body);
+  client.post('friendships/create', { screen_name: req.body.screen_name }, function(error, user, response) {
+    if (error) {
+      console.error(error);
+      res.status(500);
+      return;
+    }
+
+    res.json(user);
+  });
+});
 
 module.exports = router;
